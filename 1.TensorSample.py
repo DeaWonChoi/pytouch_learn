@@ -48,35 +48,35 @@ if torch.cuda.is_available():
     tensor = torch.ones(4, 4)
     tensor = tensor.to("cuda")
 
-    # NumPy식의 표준 인덱싱과 슬라이싱:
-    tensor = torch.ones(4, 4)
-    print(f"First row: {tensor[0]}")
-    print(f"First column: {tensor[:, 0]}")
-    print(f"Last column: {tensor[..., -1]}")
-    tensor[:, 1] = 0
-    print(tensor)
+# NumPy식의 표준 인덱싱과 슬라이싱:
+tensor = torch.ones(4, 4)
+print(f"First row: {tensor[0]}")
+print(f"First column: {tensor[:, 0]}")
+print(f"Last column: {tensor[..., -1]}")
+tensor[:, 1] = 0
+print(tensor)
 
-    # 텐서 합치기 torch.cat 을 사용하여 주어진 차원에 따라 일련의 텐서를 연결할 수 있습니다. torch.cat 과 미묘하게 다른 또 다른 텐서 결합 연산인 torch.stack 도 참고해보세요.
-    t1 = torch.cat([tensor, tensor, tensor], dim=1)
-    print(t1)
+# 텐서 합치기 torch.cat 을 사용하여 주어진 차원에 따라 일련의 텐서를 연결할 수 있습니다. torch.cat 과 미묘하게 다른 또 다른 텐서 결합 연산인 torch.stack 도 참고해보세요.
+t1 = torch.cat([tensor, tensor, tensor], dim=1)
+print(t1)
 
-    # 두 텐서 간의 행렬 곱(matrix multiplication)을 계산합니다. y1, y2, y3은 모두 같은 값을 갖습니다.
-    # ``tensor.T`` 는 텐서의 전치(transpose)를 반환합니다.
-    y1 = tensor @ tensor.T
-    y2 = tensor.matmul(tensor.T)
+# 두 텐서 간의 행렬 곱(matrix multiplication)을 계산합니다. y1, y2, y3은 모두 같은 값을 갖습니다.
+# ``tensor.T`` 는 텐서의 전치(transpose)를 반환합니다.
+y1 = tensor @ tensor.T
+y2 = tensor.matmul(tensor.T)
 
-    y3 = torch.rand_like(y1)
-    torch.matmul(tensor, tensor.T, out=y3)
+y3 = torch.rand_like(y1)
+torch.matmul(tensor, tensor.T, out=y3)
 
-    # 요소별 곱(element-wise product)을 계산합니다. z1, z2, z3는 모두 같은 값을 갖습니다.
-    z1 = tensor * tensor
-    z2 = tensor.mul(tensor)
+# 요소별 곱(element-wise product)을 계산합니다. z1, z2, z3는 모두 같은 값을 갖습니다.
+z1 = tensor * tensor
+z2 = tensor.mul(tensor)
 
-    z3 = torch.rand_like(tensor)
-    torch.mul(tensor, tensor, out=z3)
+z3 = torch.rand_like(tensor)
+torch.mul(tensor, tensor, out=z3)
 
-    # 단일-요소(single-element) 텐서 텐서의 모든 값을 하나로 집계(aggregate)하여 요소가 하나인 텐서의 경우, item() 을 사용하여 Python 숫자 값으로 변환할 수 있습니다:
-    agg = tensor.sum()
-    agg_item = agg.item()
-    print(agg_item, type(agg_item))
+# 단일-요소(single-element) 텐서 텐서의 모든 값을 하나로 집계(aggregate)하여 요소가 하나인 텐서의 경우, item() 을 사용하여 Python 숫자 값으로 변환할 수 있습니다:
+agg = tensor.sum()
+agg_item = agg.item()
+print(agg_item, type(agg_item))
 
